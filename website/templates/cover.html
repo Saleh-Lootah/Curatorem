@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} Curatorem {% endblock %}
+{% block content %}
+<body class="text-center">
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Curatorem</h1>
+        <p class="lead">A movie recommender based on collaborative filtering</p>
+        {% if user.is_authenticated %}
+        <p class="lead">
+          <a class="btn btn-lg btn-secondary" id="enter" href="/profile">Enter</a>
+        </p>
+        {% else %}
+        <p class="lead">
+          <a class="btn btn-lg btn-secondary" id="enter" href="/login">Enter</a>
+        </p>
+        {% endif %}
+      </main>
+    </div>
+
+</body>
+{% endblock %}
