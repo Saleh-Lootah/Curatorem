@@ -10,6 +10,7 @@ flask-login = "*"
 flask-sqlalchemy = "*"
 gunicorn = "*"
 requests = "*"
+flask-whooshalchemy3 = "==0.2.0"
 
 [dev-packages]
 

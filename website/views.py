@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from . import OMDB
-from .models import Movie, User, Rating, db
+from .models import Movie, User, Rating, Recommendation, db
 import requests
 import json
 
@@ -32,9 +32,34 @@ def profile():
 @views.route('/movie_list')
 @login_required
 def movie_list():
-    movies = Movie.query.order_by('title').all()
+    movies = Movie.query.all()
 
     return render_template("movie_list.html", user=current_user, movies=movies)
+
+@views.route('/recommendations')
+@login_required
+def recommendations():
+    # Here I need to search the movie table for the respective movie Id
+    # so instead of sending a recs array we send an edited recs array
+    rec_movie_info = []
+    recs = Recommendation.query.filter_by(user_id=current_user.id)
+    for rec in recs:
+        movie_info = Movie.query.filter_by(movie_id=rec.movie_id).one()
+        movie_name = movie_info.title
+        
+        querystring = {"t":movie_name,"r":"json"}
+
+        try:
+            response = requests.get(OMDB, params=querystring)
+            #print(response.content)
+            poster = response.json()['Poster']
+            rec_movie_info.append((movie_info.title, movie_info.movie_id, poster))
+        except:
+            print('ayy movie poster not found lmao')
+
+
+    return render_template("recs.html", user=current_user, recs=rec_movie_info)
+
 
 @views.route("/moviedetails/<movie_id>", methods=['GET'])
 @login_required
@@ -77,19 +102,28 @@ def search():
             response = requests.get(OMDB, params=querystring)
             movies = response.json()['Search']
             
-            movie_ids = []
+            # movie_ids = []
             movie_names = []
             movie_posters = []
 
+            # db_movie = session.query(Movie).filter(Movie.name.match(name)).all()
+            # print(db_movie)
+
             for movie in movies:
-                movie_id = movie['imdbID']
                 name = movie['Title']
                 poster = movie['Poster']
-                movie_ids.append(movie_id)
+
+                # try:
+                #     db_movie = Movie.query.filter(Movie.name.match('Toy')).one()
+                #     print(db_movie.title)
+                # except:
+                #     print("Movie not found in DB")
+
                 movie_names.append(name)
                 movie_posters.append(poster)
+                # movie_ids.append(id)
             
-            movie_info = zip(movie_ids, movie_names, movie_posters)
+            movie_info = zip( movie_names, movie_posters)
             
             return render_template("search.html", user=current_user, movies=movie_info)
 
