@@ -5,6 +5,7 @@ from .models import Movie, User, Rating, Recommendation, db
 import requests
 import json
 
+
 views = Blueprint('views', __name__)
 
 @views.route('/')
@@ -56,6 +57,7 @@ def recommendations():
             rec_movie_info.append((movie_info.title, movie_info.movie_id, poster))
         except:
             print('ayy movie poster not found lmao')
+            rec_movie_info.append((movie_info.title, movie_info.movie_id, "#"))
 
 
     return render_template("recs.html", user=current_user, recs=rec_movie_info)
