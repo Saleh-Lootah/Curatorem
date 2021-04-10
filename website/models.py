@@ -6,19 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 # object, where we do most of our interactions (like committing, etc.)
 
 db = SQLAlchemy()
-DB_NAME = 'postgresql://saleh@curatoremtesting:Binlo0otah@curatoremtesting.postgres.database.azure.com/curatorem'
-
-# postgresql://postgres:XXXXXXX@localhost/Curatorem1.0
-# curatoremtesting.postgres.database.azure.com
-# postgresql://saleh@curatoremtesting:XXXXXXX@curatoremtesting.postgres.database.azure.com/curatorem
-
-# driver = "org.postgresql.Driver"
-# url = "jdbc:postgresql://curatoremtesting.postgres.database.azure.com:5432/curatorem?&sslmode=require"
-# table = "ratings"
-# user = "saleh@curatoremtesting"
-# password = "Binlo0otah"
-
-# Model definitions
+DB_NAME = 'postgresql://saleh@curatorem-db:12qwaszX@curatorem-db.postgres.database.azure.com/curaDB'
 
 class Rating(db.Model):
     __tablename__ = 'ratings'
@@ -34,7 +22,7 @@ class Rating(db.Model):
     movie = db.relationship("Movie", backref=db.backref("ratings", order_by=rating_id))
 
 class Recommendation(db.Model):
-    __tablename__ = 'new_recs'
+    __tablename__ = 'recommendations'
 
     rec_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -42,9 +30,9 @@ class Recommendation(db.Model):
     prediction = db.Column(db.Float, nullable=True)
 
     #Define relationship to user
-    user = db.relationship("User", backref=db.backref("new_recs"), order_by=user_id)
+    user = db.relationship("User", backref=db.backref("recommendations"), order_by=user_id)
     #Define relationship to movie
-    movie = db.relationship("Movie", backref=db.backref("new_recs"), order_by=user_id)
+    movie = db.relationship("Movie", backref=db.backref("recommendations"), order_by=user_id)
 
 
 class Movie(db.Model):

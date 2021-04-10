@@ -9,7 +9,7 @@ def load_movies():
     # we won't be trying to add duplicate users
     Movie.query.delete()
 
-    print("Movie")
+    print("Seeding Movie")
 
     f = open("website/seed_data/u.item", encoding = "ISO-8859-1")
     lines = f.readlines()
@@ -46,7 +46,7 @@ def load_movies():
 def load_users():
     """Load users from u.user into database."""
 
-    print("Users")
+    print("Seeding Users")
 
     # Delete all rows in table, so if we need to run this a second time,
     # we won't be trying to add duplicate users
@@ -70,7 +70,7 @@ def load_users():
 def load_ratings():
     """Load ratings from u.data into database."""
 
-    print("ratings")
+    print("Seeding Ratings")
 
     Rating.query.delete()
 
