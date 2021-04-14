@@ -28,8 +28,6 @@ def create_app():
         app.debug = False
         connect_to_db(app)
 
-    
-    #if tables have not been created, create them.
     if SEED == True:
         db.drop_all(app=app)
         db.create_all(app=app)

@@ -2,12 +2,12 @@
 {% block title %} All Movies {% endblock %}
 {% block content %}
 
-<div class="container mw-60">
+<!-- <div class="container mw-60">
 <div class="album py-5">
 
   
       <div class="row">
-        {% for title, id, poster in recs: %}
+        {% for title, id in recs: %}
         <div class="col-md-4">
           <div class="card mb-4 box-shadow">
             <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" style="height: 225px; width: 100%; display: block;" src="{{poster}}" data-holder-rendered="true">
@@ -24,6 +24,15 @@
 
     </div>
 
-  </div>
+  </div> -->
+
+  <section class="movies">
+    {% for title, id in recs: %}
+    <div class="movie-card">
+      <blockquote>{{ title }}</blockquote>
+      <a class="primary-cta" href="/moviedetails/{{ id }}"> More info </a>
+    </div>
+    {% endfor %}
+  </section>
 
 {% endblock %}

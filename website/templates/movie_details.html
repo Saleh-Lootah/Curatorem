@@ -1,30 +1,33 @@
 {% extends "base.html" %}
 {% block title %} All Movies {% endblock %}
 {% block content %}
-<h2>Movie Details</h2>
-    <ul>
-        <li>{{movie.title}}</li>
-        <li>{{movie.imdb_url}}</li>
-        <li>{{movie.released_at}}</li>
-    </ul>
-    
-    <br>
+<section class="movie-details">
+    <div class="left-col">
+        <h2>Movie Details</h2>
+        <ul>
+            <li>{{movie.title}}</li>
+            <li>{{movie.imdb_url}}</li>
+            <li>{{movie.released_at}}</li>
+        </ul>
+    </div>
+    <div class="right-col">
+        <h2>Rate this Movie</h2>
+        <form action="/moviedetails/{{movie.movie_id}}" method="POST" id="ratingform">
+            <input type="hidden" name="movie_id" value={{movie.movie_id}}>
+            <select class="rating-selector" name="rating"form="ratingform">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        <input type="submit" class="primary-cta" value="Submit">
+        <input type="button" class="primary-cta" value="Back" onClick="history.go(-1);">
+      </form>        
+    </div>
+</section> 
 
-    <h1>Rate this Movie</h1>
-    <form action="/moviedetails/{{movie.movie_id}}" method="POST" id="ratingform">
-        <label for="Movie">{{movie.title}}</label>
-        <input type="hidden" name="movie_id" value={{movie.movie_id}}>
-        <select name="rating"form="ratingform">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <br>
-    <button type="submit" class="btn btn-primary">Submit</button>
-    <form>
-        
-    <a onclick="history.back(-1)" href="#"> Back</a>
+   
+
     
 {% endblock %}

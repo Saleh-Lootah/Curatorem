@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+
+:root{
+  --cream: #FBEAC6;
+  --yellow-cream: #F4C767;
+  --kinda-black: #141415;
+  --kinda-white: #EAEAEB;
+  --dark-grey: rgb(94, 94, 94);
+}
+
+body{
+  background: var(--kinda-black);
+  margin: 0;
+  font-family: 'Poppins';
+  color: #EAEAEB;
+}
+
+.navbar{
+  background: var(--dark-grey);
+  padding: 1em;
+
+  .logo{
+    cursor: pointer;
+  }
+
+  nav{
+    display: none;
+  }
+
+  .container{
+    display:flex;
+    place-content: space-between;
+  }
+
+  .mobile-menu{
+    cursor: pointer;
+  }
+}
+
+a {
+  color: rgb(54, 54, 54);  
+}
+
+ul{
+  list-style-type: none;
+  margin:0;
+  padding: 0;
+}
+
+section{
+  padding: 5em 2em;  
+}
+
+.hero{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container{
+    h1{
+      color: #F4C767;
+      font-size:3em;
+      line-height:1.3em;
+      margin-bottom: -.2em;
+    }
+    .subhead{
+      font-size: 1.2em;
+      color: grey;
+      letter-spacing: .1em;
+    }
+    .primary-cta{
+      background: var(--dark-grey);
+      color: whitesmoke;
+      text-decoration: none;
+      padding: .6em 1.3em;
+      border-radius: 5em;
+      display: inline-block;
+    }
+  }
+}
+
+// Change nav from display none to block
+nav.menu-btn {
+  display: block;
+}
+
+// Mobile navigation thing
+nav{
+  position: fixed;
+  z-index:999;
+  width: 55%;
+  right: 0;
+  top: 0;
+  background: rgb(51, 51, 51);
+  height: 100vh;
+  padding: 1em;
+
+  ul.primary-nav {
+    margin-top: 5em;
+  }
+
+  li {
+    a{
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 0.5em;
+        font-size: 1.3em;
+        text-align: right;
+
+        &:hover{
+          font-weight: bold;
+        }
+    }
+  }
+}
+
+// Move exit button to the right of the nav
+.mobile-exit{
+  float: right;
+  margin: .5em;
+  cursor: pointer;
+}
+
+section.login-form{
+  display: flex;
+  justify-content: center;
+  .submit-btn{
+    text-align: center; 
+  }
+  form{
+    width: 60%;
+  }
+}
+
+
+section.sign-up-form{
+  display: flex;
+  justify-content: center;
+  .submit-btn{
+    text-align: center; 
+  }
+  form{
+    width: 60%;
+  }
+}
+
+h2 {
+  font-size: 2em;
+}
+
+label {
+  display: block;
+  font-size: 1.2em;
+  margin-bottom: .5em;
+}
+
+input, textarea {
+  width: 100%;
+  padding: .8em;
+  margin-bottom: 1em;
+  border-radius: .3em;
+  border: 1px solid gray;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  justify-self: center;
+  background-color: var(--dark-grey);
+  color: white;
+  font-weight: bold;
+  font-size: 0.8em;
+  border: none;
+  margin-top: 3em;
+  margin-bottom: 5em;
+  border-radius: 5em;
+  display: inline-block;
+  padding: .8em 2em;
+  width: unset;
+  cursor: pointer;
+}
+input[type="button"] {
+  justify-self: center;
+  background-color: var(--dark-grey);
+  color: white;
+  font-weight: bold;
+  font-size: 0.8em;
+  border: none;
+  margin-top: 3em;
+  margin-bottom: 5em;
+  border-radius: 5em;
+  display: inline-block;
+  padding: .8em 2em;
+  width: unset;
+  cursor: pointer;
+}
+
+.movies{
+  padding-top: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  .movie-card {
+    background: var(--dark-grey);
+    text-align: center;
+    padding: 2em 1em;
+    border-radius: 1em;
+    margin: 1em;
+    width: 20%;
+
+    blockquote{
+      font-size: 0.8em;
+      margin: 0;
+      margin-bottom: 1em;
+    }
+    p{
+      width: 100%;
+      font-size: 0.6em;
+    }
+  }
+}
+
+section.movie-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  padding-top: 2em;
+  .left-col{
+    display: inline;
+    margin: 1em;
+
+    h1 {
+      font-size: 2.5em;
+      line-height: 1.3em;
+      margin-top: .2em;
+    }
+  }
+  .right-col{
+    display: inline-block;
+    margin: 1em;
+    form{
+      text-align: center;
+    }
+    select{
+      font-size: 1em;
+      text-align: center;
+      width: 100%;
+      padding: .8em;
+      margin-bottom: 1em;
+      border-radius: .3em;
+      border: 1px solid gray;
+      box-sizing: border-box;
+    }
+  }
+}
+
+section.hint{
+  text-align: center;
+  padding: 3em 2em 0 2em;
+  p{
+    margin-left: 2em;
+  }
+}
+
+//______________________________________________
+
+// If display > 768px
+@media only screen and (min-width: 768px) {
+  .mobile-menu, .mobile-exit {
+    display: none;
+  }
+
+  .navbar .container {
+    display: grid;
+    grid-template-columns: 45px auto;
+    justify-content: unset;
+  }
+
+  .navbar nav {
+    display: flex;
+    justify-content: space-between;
+    background: none;
+    position: unset;
+    height: auto;
+    width: 100%;
+    padding: 0;
+    
+    ul{
+      display: flex;
+    }
+    a{
+      color: var(--kinda-white);
+      font-size: 1em;
+      padding: .1em 1em;
+    }
+    ul.primary-nav{
+      margin: 0;
+    }
+    li.current a {
+      font-weight: bold;
+    }
+    li.log-out-btn a {
+      color: var(--kinda-white);
+      border: 3px solid var(--kinda-white);
+      border-radius: 5em;
+      margin-top: -.2em;
+
+      &:hover {
+        background: var(--kinda-white);
+        color: var(--kinda-black);
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1080px) {
+  .container {
+    width: 1080px;
+    margin: 0 auto;
+  }
+  .movies{
+    width: 1080px;
+    margin: 0 auto;
+  }
+  section.hint{
+    width: 1080px;
+    margin: 0 auto;
+  }
+  section {
+      padding: 10em 4em;
+  }
+}

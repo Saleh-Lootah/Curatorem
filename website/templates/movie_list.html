@@ -2,7 +2,7 @@
 {% block title %} All Movies {% endblock %}
 {% block content %}
 
-<div class="container mw-60">
+<!-- <div class="container mw-60">
 <div class="album py-5">
 
   
@@ -26,6 +26,24 @@
 
     </div>
 
-  </div>
+  </div> -->
+  <section class="hint">
+    <p>
+      Press <kbd>cmd + f</kbd> or <kbd>ctrl + f</kbd> to quickly search for movies in the database
+    </p>
+  </section>
+  
+  <section class="movies">
+
+    {% if movies != [] or [''] %}
+    {% for movie in movies: %}
+    <div class="movie-card">
+      <img src="#" alt="">
+      <blockquote>{{ movie.title }}</blockquote>
+      <a class="primary-cta" href="/moviedetails/{{ movie.movie_id }}"> Rate Movie </a>
+    </div>
+    {% endfor %}
+    {% endif %}
+</section>
 
 {% endblock %}

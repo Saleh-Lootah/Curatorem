@@ -21,9 +21,10 @@ def profile():
 
     movie_ratings = {}
     for rating in user.ratings:
+        movie_id = rating.movie_id
         title = rating.movie.title
         score = rating.score
-        movie_ratings[title] = score
+        movie_ratings[title] = (movie_id, score)
     
     print()
 
@@ -46,19 +47,7 @@ def recommendations():
     recs = Recommendation.query.filter_by(user_id=current_user.id)
     for rec in recs:
         movie_info = Movie.query.filter_by(movie_id=rec.movie_id).one()
-        movie_name = movie_info.title
-        
-        querystring = {"t":movie_name,"r":"json"}
-
-        try:
-            response = requests.get(OMDB, params=querystring)
-            #print(response.content)
-            poster = response.json()['Poster']
-            rec_movie_info.append((movie_info.title, movie_info.movie_id, poster))
-        except:
-            print('ayy movie poster not found lmao')
-            rec_movie_info.append((movie_info.title, movie_info.movie_id, "#"))
-
+        rec_movie_info.append((movie_info.title, movie_info.movie_id))
 
     return render_template("recs.html", user=current_user, recs=rec_movie_info)
 
