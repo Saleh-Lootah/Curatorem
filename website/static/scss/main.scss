@@ -181,6 +181,7 @@ input[type="submit"] {
   width: unset;
   cursor: pointer;
 }
+
 input[type="button"] {
   justify-self: center;
   background-color: var(--dark-grey);
@@ -198,22 +199,27 @@ input[type="button"] {
 }
 
 .movies{
-  padding-top: 2em;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  padding-top: 0;
+
   .movie-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background: var(--dark-grey);
     text-align: center;
     padding: 2em 1em;
     border-radius: 1em;
     margin: 1em;
-    width: 20%;
+    width: 50%;
 
     blockquote{
+      bottom: 100px;
+      color: var(--cream);
       font-size: 0.8em;
-      margin: 0;
-      margin-bottom: 1em;
+      margin: 0 0 1em 0;
     }
     p{
       width: 100%;
@@ -259,11 +265,9 @@ section.movie-details {
 }
 
 section.hint{
+  display: none;
   text-align: center;
   padding: 3em 2em 0 2em;
-  p{
-    margin-left: 2em;
-  }
 }
 
 //______________________________________________
@@ -315,6 +319,15 @@ section.hint{
       }
     }
   }
+  .movies{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: space-evenly;
+    padding-top: 0;
+    .movie-card{
+      width: 60%;
+    }
+  }
 }
 
 @media only screen and (min-width: 1080px) {
@@ -325,8 +338,17 @@ section.hint{
   .movies{
     width: 1080px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: space-evenly;
+    padding-top: 0;
+
+    .movie-card{
+      width: 60%;
+    }
   }
   section.hint{
+    display: block;
     width: 1080px;
     margin: 0 auto;
   }
