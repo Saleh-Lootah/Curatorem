@@ -2,31 +2,10 @@
 {% block title %} All Movies {% endblock %}
 {% block content %}
 
-<!-- <div class="container mw-60">
-<div class="album py-5">
-
-  
-      <div class="row">
-        {% for title, id in recs: %}
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" style="height: 225px; width: 100%; display: block;" src="{{poster}}" data-holder-rendered="true">
-            <div class="card-body"> 
-              <p class="card-text">{{ title }}</p> 
-              <div class="d-flex justify-content-between align-items-center">
-                <a class="btn btn-primary stretched-link" href="/moviedetails/{{ id }}"> Rate Movie </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-
-    </div>
-
-  </div> -->
-
   <section class="movies">
+    {% if recs == [] or [''] %}
+      <p>Please rate some more movies</p>
+    {% endif %}
     {% for title, id in recs: %}
     <div class="movie-card">
       <blockquote>{{ title }}</blockquote>
