@@ -3,9 +3,6 @@
 {% block content %}
 
   <section class="movies">
-    {% if recs == [] or [''] %}
-      <p>Please rate some more movies</p>
-    {% endif %}
     {% for title, id in recs: %}
     <div class="movie-card">
       <blockquote>{{ title }}</blockquote>
