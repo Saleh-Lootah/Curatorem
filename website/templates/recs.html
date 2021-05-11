@@ -2,6 +2,7 @@
 {% block title %} All Movies {% endblock %}
 {% block content %}
 
+    {% if recs|length %}
   <section class="movies">
     {% for title, id in recs: %}
     <div class="movie-card">
@@ -10,5 +11,13 @@
     </div>
     {% endfor %}
   </section>
+    {% else %}
+    <section class="hero">
+      <div class="container">
+        <p>Please rate some more movies to view recommendations</p>
+      </div>
+    </section> 
+    {% endif %}
+  
 
 {% endblock %}

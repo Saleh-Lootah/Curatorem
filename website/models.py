@@ -6,7 +6,10 @@ from flask_sqlalchemy import SQLAlchemy
 # object, where we do most of our interactions (like committing, etc.)
 
 db = SQLAlchemy()
-DB_NAME = 'postgresql://saleh@curatorem-db:12qwaszX@curatorem-db.postgres.database.azure.com/curaDB'
+# Hosted DB
+DB_NAME = 'postgresql://saleh:12qwaszX@curatorem.postgres.database.azure.com/curaDB'
+# Test DB
+#DB_NAME = 'postgresql://postgres:12qwaszX@localhost:5432/Curatorem1.0'
 
 class Rating(db.Model):
     __tablename__ = 'ratings'

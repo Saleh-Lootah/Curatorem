@@ -12,6 +12,7 @@
   </div>
 </section> 
 
+  {% if movie_ratings|length %}
 <section class="movies">
   {% for title,info in movie_ratings.items(): %}
   <div class="movie-card">
@@ -20,7 +21,16 @@
     <p class="card-text">Rating: {{ info[1] }}</p>
     <a class="primary-cta" href="/moviedetails/{{ info[0] }}"> More info </a>
   </div>
+
   {% endfor %}
 </section>
+
+  {% else %}
+  <section class="hero">
+    <div class="container">
+      <p>Please rate some movies to allow the recommendation engine to start generating movie recommendations</p>
+    </div>
+  </section> 
+  {% endif %}
 
 {% endblock %}
