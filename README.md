@@ -1,2 +1,2 @@
 # Curatorem
-A movie recommender system based
+A movie recommender system
